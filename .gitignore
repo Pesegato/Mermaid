@@ -61,3 +61,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+build/built-jar.properties
+build/classes/.netbeans_automatic_build
+*.netbeans_update_resources
+dist/README.TXT
+*.dll
+nbproject/private/config.properties
+nbproject/private/private.properties
