@@ -44,7 +44,7 @@ public class MermaidAppState extends BaseAppState {
         font1 = app.getAssetManager().loadFont("Interface/Fonts/"+GM.getString("FontA"));
         font1.getPage(0).setFloat("AlphaDiscardThreshold", 0.1f);
         attrs.set("font", font1);
-        attrs.set("fontSize", GM.getInt("FontA"));
+        attrs.set("fontSize", GM.getIntXML("FontA"));
 
         a = GM.getColorRGBA("ColorA");
         b = GM.getColorRGBA("ColorB");
