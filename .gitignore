@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -66,5 +65,7 @@ build/classes/.netbeans_automatic_build
 *.netbeans_update_resources
 dist/README.TXT
 *.dll
-nbproject/private/config.properties
-nbproject/private/private.properties
+.idea/
+/build/
+/dist/
+
