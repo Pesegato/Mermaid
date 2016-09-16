@@ -48,7 +48,7 @@ dependencies {
 	compile fileTree(dir: 'lib', include: ['*.jar'])
 
 	compile "${jme3.g}:jme3-core:${jme3.v}"
-	compile "com.simsilica:lemur:1.9.1-SNAPSHOT"
+	compile "com.simsilica:lemur:1.8.2"
 	compile 'org.slf4j:slf4j-api:1.7.13'
     compile 'com.google.guava:guava:19.0'
 	compile "${pesegato.g}:GoldMonkey:${pesegato.v}"
