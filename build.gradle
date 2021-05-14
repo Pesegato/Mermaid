@@ -47,7 +47,7 @@ if (isCiServer){
 dependencies {
 	compile fileTree(dir: 'lib', include: ['*.jar'])
 
-	compile "org.lwjgl.lwjgl:lwjgl:2.9.3"
+	compile "org.lwjgl.lwjgl:lwjgl3:${jme3.v}"
 	compile "${jme3.g}:jme3-core:${jme3.v}"
 	compile "com.simsilica:lemur:1.8.2"
 	compile 'org.slf4j:slf4j-api:1.7.13'
