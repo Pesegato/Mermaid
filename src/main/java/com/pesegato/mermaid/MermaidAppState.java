@@ -18,7 +18,6 @@ import com.simsilica.lemur.GuiGlobals;
 import com.simsilica.lemur.Label;
 import com.simsilica.lemur.style.Attributes;
 import com.simsilica.lemur.style.Styles;
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -74,7 +73,7 @@ public class MermaidAppState extends BaseAppState {
         }
         miscSettings = new PPropertyPanel(LEMURSTYLE);
         miscSettings.attachChild(new PLabel(GL11.glGetString(GL11.GL_RENDERER), 0, -.5f));
-        miscSettings.attachChild(new PLabel("Ver. " + Display.getVersion(), 0, -1));
+        miscSettings.attachChild(new PLabel("Ver. TODO",0,-1));// + Display.getVersion(), 0, -1));
         miscSettings.attachChild(new PLabel("OpenGL " + oglVersion + " GLSL " + glslVersion, 0, -1.5f));
         miscSettings.attachChild(new PLabel(System.getProperty("os.name") + " ver." + System.getProperty("os.version"), 0, -2));
         miscSettings.attachChild(new PLabel("Java " + System.getProperty("java.version") + " " + System.getProperty("os.arch"), 0, -2.5f));
