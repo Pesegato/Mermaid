@@ -1,23 +1,16 @@
+import org.gradle.api.publish.maven.MavenPublication
+
 plugins {
 	id "java"
-	id "maven"
+	id "maven-publish"
 //  id "eclipse"
-//  id "idea"
-    id 'pl.allegro.tech.build.axion-release' version '1.4.0'
+	id "idea"
+	id 'com.palantir.git-version' version '0.12.3'
 }
 
-scmVersion {
-    tag {
-        prefix = 'Mermaid'
-    }
-}
+project.version gitVersion()
 
-project.version = scmVersion.version
-def fullversion = "git describe --always --dirty".execute().text.trim()
-println("version : '${project.version}/${fullversion}'")
-
-//name = the directory name
-//version = "0.1.0"
+println("version : '${version}'")
 
 //version = "0.1.0-SNAPSHOT-${new Date().format("yyyyMMdd-HHmmss")}"
 group = "com.pesegato"
@@ -28,11 +21,10 @@ ext {
 	javaVersion = JavaVersion.current()
 	isCiServer = System.getenv("TRAVIS") || System.getenv().containsKey("TEAMCITY_VERSION") || hasProperty('CI') || System.getenv("JITPACK")
 	isWindows = org.gradle.internal.os.OperatingSystem.current().windows
-	jmonkeyengine_version = '[3.1,)'
+	jmonkeyengine_version = '3.4.0-stable'
 }
 
 repositories {
-	mavenLocal()
     jcenter()
 	maven { url "https://jitpack.io" }
 }
@@ -45,16 +37,24 @@ if (isCiServer){
 }
 
 dependencies {
-	compile fileTree(dir: 'lib', include: ['*.jar'])
+	implementation fileTree(dir: 'lib', include: ['*.jar'])
 
-	compile "org.jmonkeyengine:jme3-lwjgl3:${jme3.v}"
-	compile "com.simsilica:lemur:1.8.2"
-	compile 'org.slf4j:slf4j-api:1.7.13'
-    compile 'com.google.guava:guava:19.0'
-	compile "${pesegato.g}:GoldMonkey:${pesegato.v}"
-	compile 'com.google.code.gson:gson:2.7'
-	runtime 'ch.qos.logback:logback-classic:1.1.2'
+	implementation "org.jmonkeyengine:jme3-lwjgl3:${jme3.v}"
+	implementation "com.simsilica:lemur:1.8.2"
+	implementation 'org.slf4j:slf4j-api:1.7.13'
+	implementation 'com.google.guava:guava:19.0'
+	implementation "com.github.pesegato:GoldMonkey:[0.7,)"
+	implementation 'com.google.code.gson:gson:2.7'
+	runtimeOnly 'ch.qos.logback:logback-classic:1.1.2'
 
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -63,19 +63,19 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 compileJava.doLast {
 	def buildDate = new Date().format('yyyy-MM-dd HHmm')
-	println "Writing ${scmVersion.tag.prefix}.build.date: " + buildDate
-	new File(destinationDir, "${scmVersion.tag.prefix}.build.date").text = buildDate
-	new File(destinationDir, "${scmVersion.tag.prefix}.build.version").text = "${fullversion}"
+	println "Writing ${rootProject.name}.build.date: " + buildDate
+	new File(destinationDir, "${rootProject.name}.build.date").text = buildDate
+	new File(destinationDir, "${rootProject.name}.build.version").text = "${version}"
 }
 
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
+	archiveClassifier.set("sources")
 	from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
+	archiveClassifier.set("javadoc")
 	from javadoc.destinationDir
 }
 
