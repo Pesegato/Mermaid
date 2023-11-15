@@ -1,21 +1,16 @@
-import org.gradle.api.publish.maven.MavenPublication
-
 plugins {
-	id "java"
-	id "maven-publish"
-//  id "eclipse"
-	id "idea"
-	id 'com.palantir.git-version' version '0.12.3'
+	id 'java-library'
+	id 'maven-publish'
+	id 'signing'
+	id 'com.palantir.git-version' version '3.0.0'
 }
 
-project.version gitVersion()
+group 'io.github.pesegato'
+version gitVersion()
 
 println("version : '${version}'")
 
 //version = "0.1.0-SNAPSHOT-${new Date().format("yyyyMMdd-HHmmss")}"
-group = "com.pesegato"
-
-
 ext {
 	jvm = org.gradle.internal.jvm.Jvm.current()
 	javaVersion = JavaVersion.current()
@@ -37,7 +32,7 @@ if (isCiServer){
 }
 
 dependencies {
-	implementation fileTree(dir: 'lib', include: ['*.jar'])
+	//implementation fileTree(dir: 'lib', include: ['*.jar'])
 
 	implementation "org.jmonkeyengine:jme3-lwjgl3:${jme3.v}"
 	implementation "com.simsilica:lemur:1.8.2"
@@ -53,33 +48,57 @@ publishing {
 	publications {
 		mavenJava(MavenPublication) {
 			from components.java
+			pom {
+				name = 'Mermaid'
+				description = '3D GUI widgets for JMonkeyEngine 3'
+				url = 'https://github.com/Pesegato/Mermaid/'
+				inceptionYear = '2016'
+				licenses {
+					license {
+						name = 'BSD 3-Clause License'
+						url = 'https://github.com/Pesegato/Mermaid/blob/main/LICENSE'
+					}
+				}
+				developers {
+					developer {
+						id = 'pesegato'
+						name = 'Pesegato Ameiurus Melas'
+						email = 'pesegato@outlook.com'
+					}
+				}
+				scm {
+					connection = 'scm:git:git://github.com/pesegato/mermaid.git'
+					developerConnection = 'scm:git:ssh://git@github.com/pesegato/mermaid.git'
+					url = 'https://github.com/Pesegato/Mermaid/'
+				}
+			}
+		}
+	}
+	repositories {
+		maven {
+			url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+			credentials {
+				username = ossrhUsername
+				password = ossrhPassword
+			}
 		}
 	}
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(11)
+	}
+	withJavadocJar()
+	withSourcesJar()
+}
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 compileJava.doLast {
 	def buildDate = new Date().format('yyyy-MM-dd HHmm')
 	println "Writing ${rootProject.name}.build.date: " + buildDate
-	new File(destinationDir, "${rootProject.name}.build.date").text = buildDate
-	new File(destinationDir, "${rootProject.name}.build.version").text = "${version}"
-}
-
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-	archiveClassifier.set("sources")
-	from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	archiveClassifier.set("javadoc")
-	from javadoc.destinationDir
-}
-
-artifacts {
-	archives sourcesJar
-	archives javadocJar
+	destinationDirectory.file("${rootProject.name}.build.date").get().asFile.text = buildDate
+	destinationDirectory.file("${rootProject.name}.build.version").get().asFile.text = "${version}"
 }
