@@ -1,4 +1,4 @@
-<div align="center"><img alt="Static Badge" src="https://img.shields.io/badge/jme3-Mermaid-yellow?style=for-the-badge&logo=github"  height="100" align="center">
+<div align="center"><img alt="Static Badge" src="https://img.shields.io/badge/🐵jme3-Mermaid-yellow?style=for-the-badge"  height="100" align="center">
 
  # 3D GUI widgets for JMonkeyEngine 3
 
