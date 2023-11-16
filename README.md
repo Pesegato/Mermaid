@@ -1,5 +1,13 @@
-# Mermaid [![Build Status](https://travis-ci.org/Pesegato/Mermaid.svg?branch=master)](https://travis-ci.org/Pesegato/Mermaid) [![](https://jitpack.io/v/Pesegato/Mermaid.svg)](https://jitpack.io/#Pesegato/Mermaid)
-3D GUI widgets for JMonkeyEngine 3
+<div align="center"><img alt="Static Badge" src="https://img.shields.io/badge/jme3-Mermaid-yellow?style=for-the-badge&logo=github"  height="100" align="center">
+
+ # 3D GUI widgets for JMonkeyEngine 3
+
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.pesegato/Mermaid?style=for-the-badge)](https://central.sonatype.com/artifact/io.github.pesegato/Mermaid) 
+[![javadoc](https://javadoc.io/badge2/io.github.pesegato/Mermaid/javadoc.svg?style=for-the-badge)](https://javadoc.io/doc/io.github.pesegato/Mermaid) 
+
+</div>
+
+## Instructions
 
 Thread on jme3 forum:
 
