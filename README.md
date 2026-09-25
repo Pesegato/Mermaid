@@ -7,6 +7,10 @@
 
 </div>
 
+<div align="center">
+<img src="mermaid-logo.png" alt="Mermaid logo"/>
+</div>
+
 ## Instructions
 
 Thread on jme3 forum:
