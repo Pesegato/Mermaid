@@ -2,7 +2,8 @@
 
  # 3D GUI widgets for JMonkeyEngine 3
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.pesegato/Mermaid?style=for-the-badge)](https://central.sonatype.com/artifact/io.github.pesegato/Mermaid) 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.pesegato/Mermaid?style=for-the-badge)](https://central.sonatype.com/artifact/io.github.pesegato/Mermaid)
+[![GitHub Packages](https://img.shields.io/github/v/tag/Pesegato/Mermaid?label=GitHub%20Packages&style=for-the-badge)](https://github.com/Pesegato/Mermaid/packages/3308209)
 [![javadoc](https://javadoc.io/badge2/io.github.pesegato/Mermaid/javadoc.svg?style=for-the-badge)](https://javadoc.io/doc/io.github.pesegato/Mermaid) 
 
 </div>
